@@ -7,7 +7,8 @@ async function getWeather(city) { // Gets receives city name & get weather data
         const response = await fetch(url); //Sends request to Weather API
 
         if(!response.ok){
-            throw new Error("Weather data is not available.");
+           const errorText = await response.text();
+            throw new Error(errorText);
         }
 
         const data = await response.json(); // API return JSON data

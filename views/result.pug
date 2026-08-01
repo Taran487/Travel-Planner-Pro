@@ -13,188 +13,195 @@ html
 
         .page-container
 
-        // Main Heading
 
-        // Handled API failures
-        
-        if weather && country
+            // Main Heading
 
-            h1= weather.city + ", " + country.name
+            if weather && country
 
-        else
+                h1= weather.city + ", " + country.name
 
-            h1 Travel information unavailable
+            else if weather
 
+                h1= weather.city
 
-        // Country Information
+            else
 
-        if country
-
-            .info-card
-
-                h2= country.name
-
-                img(src=country.flag width="150" alt="Country Flag")
+                h1 Travel Information Unavailable
 
 
-                p
-                    strong Region:
-                    |  #{country.region}
 
+            // Country Information
 
-                p
-                    strong Population:
-                    |  #{country.population.toLocaleString()}
+            if country
 
+                .info-card
 
-                p
-                    strong Currency:
-                    |  #{country.currency}
-
-
-                p
-                    strong Languages:
-                    |  #{country.languages}
-
-
-        else
-
-            .info-card
-
-                p Country information unavailable
-
-        hr
-
-        // Weather Forecast
-
-        h2 3 Day Weather Forecast
-
-
-        .weather-container
-
-
-            each day in weather.forecast
-
-
-                .weather-card
-
-
-                    h3= day.date
-
+                    h2= country.name
 
                     img(
-                        src=day.day.condition.icon
-                        alt="Weather Icon"
+                        src=country.flag
+                        width="150"
+                        alt="Country Flag"
                     )
 
 
                     p
-                        strong Condition:
-                        |  #{day.day.condition.text}
-
-
-
-                    p
-                        strong Maximum Temperature:
-                        |  #{day.day.maxtemp_c} °C
-
+                        strong Region:
+                        |  #{country.region}
 
 
                     p
-                        strong Minimum Temperature:
-                        |  #{day.day.mintemp_c} °C
-
-
-
-                    p
-                        strong Average Humidity:
-                        |  #{day.day.avghumidity} %
-
+                        strong Population:
+                        |  #{country.population.toLocaleString()}
 
 
                     p
-                        strong Chance of Rain:
-                        |  #{day.day.daily_chance_of_rain} %
-
-
-
-                    p
-                        strong UV Index:
-                        |  #{day.day.uv}
-
+                        strong Currency:
+                        |  #{country.currency}
 
 
                     p
-                        strong Maximum Wind:
-                        |  #{day.day.maxwind_kph} km/h
+                        strong Languages:
+                        |  #{country.languages}
 
+            else
 
-        hr
+                .info-card
 
-        // Events Section
+                    h3 Country Information Unavailable
 
-        h2 Upcoming Events
+                    p We could not find country details.
 
+            hr
 
-        if events.length === 0
+            // Weather Forecast
 
-            .event-card
+            h2 3 Day Weather Forecast
 
-                p No upcoming events found.
+            if weather
 
-        else
+                .weather-container
 
-            .events-container
+                    each day in weather.forecast
 
-                each event in events
+                        .weather-card
 
-                    .event-card
+                            h3= day.date
 
-                        h3= event.title
+                            img(
+                                src=day.day.condition.icon
+                                alt="Weather Icon"
+                            )
 
-
-                        p
-                            strong Date:
-                            |  #{event.date}
-
-
-
-                        p
-                            strong Time:
-                            |  #{event.time}
-
-
-
-                        p
-                            strong Type:
-                            |  #{event.type}
-
-
-
-                        p
-                            strong Venue:
-                            |  #{event.venue}
-
-
-                        if event.indoor
 
                             p
-                                strong Location:
-                                |  Indoor Event
+                                strong Condition:
+                                |  #{day.day.condition.text}
 
-
-                        else
 
                             p
-                                strong Location:
-                                |  Outdoor Event
+                                strong Maximum Temperature:
+                                |  #{day.day.maxtemp_c} °C
 
 
-                        a(
-                            href=event.url
-                            target="_blank"
-                        )
-                            | Buy Tickets
+                            p
+                                strong Minimum Temperature:
+                                |  #{day.day.mintemp_c} °C
 
 
-        a.back-button(href="/") ← Search Another Destination
+                            p
+                                strong Average Humidity:
+                                |  #{day.day.avghumidity} %
+
+
+                            p
+                                strong Chance of Rain:
+                                |  #{day.day.daily_chance_of_rain} %
+
+
+                            p
+                                strong UV Index:
+                                |  #{day.day.uv}
+
+
+                            p
+                                strong Maximum Wind:
+                                |  #{day.day.maxwind_kph} km/h
+
+            else
+
+                .weather-card.error-card
+
+                    h3 Weather Unavailable
+
+                    p Sorry, we could not find weather information for this city.
+
+            hr
+
+            // Events Section
+
+            h2 Upcoming Events
+
+            if !events || events.length === 0
+
+                .event-card
+
+
+                    h3 Events Unavailable
+
+                    p No upcoming events found for this destination.
+
+            else
+
+                .events-container
+
+                    each event in events
+
+                        .event-card
+
+
+                            h3= event.title
+
+
+
+                            p
+                                strong Date:
+                                |  #{event.date}
+
+
+                            p
+                                strong Time:
+                                |  #{event.time}
+
+
+                            p
+                                strong Type:
+                                |  #{event.type}
+
+
+                            p
+                                strong Venue:
+                                |  #{event.venue}
+
+
+                            if event.indoor
+
+                                p
+                                    strong Location:
+                                    |  Indoor Event
+
+                            else
+
+                                p
+                                    strong Location:
+                                    |  Outdoor Event
+
+
+                            a(
+                                href=event.url
+                                target="_blank"
+                            )
+                                | Buy Tickets
+
+
+            a.back-button(href="/") ← Search Another Destination
