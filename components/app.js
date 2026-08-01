@@ -1,5 +1,5 @@
 // Express configuration + routes
-require("dotenv").config();
+
 const getWeather = require("./weather");
 const getCountry = require("./country");
 const getEvents = require("./events");

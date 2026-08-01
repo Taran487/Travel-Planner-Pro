@@ -36,7 +36,10 @@ async function getEvents(city) {
                 type: event.type,
 
                 venue: event.venue.name,
-
+                
+                // seatGreek (API) does not directly provide indoor/outdoor information
+                // event categories are used as an approximation to suggest indoor events
+                
                 indoor:[ "concert", "theater", "comedy", "opera", "cirque_du_soleil"].includes(event.type),
 
                 url: event.url
@@ -46,7 +49,7 @@ async function getEvents(city) {
     }
     catch(err){
         console.log("Events API Error", err.message);
-        return null;
+        return [];
     }
 }
 module.exports = getEvents;

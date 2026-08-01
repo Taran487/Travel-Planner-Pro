@@ -1,8 +1,15 @@
 # Travel Planner Pro 🌎
 
-Travel Planner Pro is a web application that helps users plan trips by combining country information, weather forecasts, and upcoming events in one place.
+Travel Planner Pro helps users plan short trips by combining weather forecasts,
+country information, and local events into one dashboard.
 
-The application allows users to search for a destination and view useful travel information before planning their trip.
+The application uses:
+- WeatherAPI to provide a 3-day weather forecast.
+- REST Countries API to display country details.
+- SeatGeek API to find upcoming local events and ticket links.
+
+The goal is to help travellers decide what activities are suitable based on
+weather conditions and available events.
 
 ## Features
 

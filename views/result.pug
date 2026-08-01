@@ -15,7 +15,15 @@ html
 
         // Main Heading
 
-        h1= weather.city + ", " + country.name
+        // Handled API failures
+        
+        if weather && country
+
+            h1= weather.city + ", " + country.name
+
+        else
+
+            h1 Travel information unavailable
 
 
         // Country Information
