@@ -1,0 +1,26 @@
+// SEARCH PAGE
+doctype html
+html
+    head
+        title Travel Planner Pro
+        link(rel="stylesheet", href="/css/style.css")
+
+    body
+        h1 Travel Planner Pro
+
+        p.subtitle Plan your 3 day trip with weather and activities.
+
+        form(action="/search" method="POST")
+            label(for="city") City:
+            input(type="text" id="city" name="city" required)
+
+            br
+            br
+
+            label(for="country") Country:
+            input(type="text" id="country" name="country" required)
+
+            br
+            br
+
+            button(type="submit") Search
